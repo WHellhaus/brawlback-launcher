@@ -6,7 +6,7 @@ import Menu from "./Menu";
 import UserHeader from './UserHeader';
 import PlayButton from './PlayButton';
 
-const AppBase: React.FC<AppBaseProps> = () => {
+const AppBase = () => {
   return (
     <Box sx={{display: 'flex'}}>
       {/* Sidebar */}
