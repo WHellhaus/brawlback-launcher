@@ -1,6 +1,9 @@
 import { css } from "@emotion/react";
 import Typography from "@mui/material/Typography";
 import React from "react";
+import InfoIcon from '@mui/icons-material/Info';
+import Tooltip from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
 
 export interface SettingItemProps {
   name: React.ReactNode | string;
@@ -9,16 +12,8 @@ export interface SettingItemProps {
 
 export const SettingItem: React.FC<SettingItemProps> = (props) => {
   return (
-    <div
-      css={css`
-        margin: 20px 0;
-      `}
-    >
-      <div
-        css={css`
-          padding-bottom: 10px;
-        `}
-      >
+    <Box sx={{margin: "20px 0"}}>
+      <Box sx={{paddingBottom: "10px", display: "flex", alignItems: "center"}}>
         <Typography
           variant="subtitle1"
           css={css`
@@ -27,9 +22,9 @@ export const SettingItem: React.FC<SettingItemProps> = (props) => {
         >
           {props.name}
         </Typography>
-        {props.description && <Typography variant="caption">{props.description}</Typography>}
-      </div>
+        {props.description && <Tooltip title={props.description}><InfoIcon sx={{marginLeft: "5px", fontSize: "20px"}} /></Tooltip>}
+      </Box>
       {props.children}
-    </div>
+    </Box>
   );
 };

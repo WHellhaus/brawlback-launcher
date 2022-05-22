@@ -17,7 +17,7 @@ import getThemeOptions from "./styles/theme";
 import { LoadingView } from "./views/LoadingView";
 import { SettingsView } from "./views/SettingsView";
 
-import { AppBase } from "./pages";
+import { AppBase, HomePage, SettingsPage } from "./pages";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,17 +52,17 @@ const routesObj = [
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <HomePage />,
         name: 'home'
       },
       {
-        path: 'replays',
-        element: <Replay />,
+        path: 'replays/*',
+        element: <SettingsView />,
         name: 'replays'
       },
       {
         path: 'settings/*',
-        element: <SettingsView />,
+        element: <SettingsPage />,
         name: 'settings'
       }
     ]
@@ -90,10 +90,8 @@ const App = () => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      {/* <ThemeProvider theme={theme as any}> */}
         <CssBaseline />
-        {routes}
-      {/* </ThemeProvider> */}
+        { routes }
     </MuiThemeProvider>
   );
 };
@@ -102,8 +100,6 @@ const App = () => {
 const withProviders = (Component: React.ComponentType) => {
   return () => (
     <StyledEngineProvider injectFirst>
-      {/* <MuiThemeProvider theme={theme}>
-        <ThemeProvider theme={theme as any}> */}
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
           <ServiceProvider>
@@ -113,8 +109,6 @@ const withProviders = (Component: React.ComponentType) => {
           </ServiceProvider>
         </ToastProvider>
       </QueryClientProvider>
-      {/* </ThemeProvider>
-      </MuiThemeProvider> */}
     </StyledEngineProvider>
   );
 };

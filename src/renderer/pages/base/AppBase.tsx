@@ -16,10 +16,12 @@ const AppBase = () => {
         <UserHeader />
 
         {/* Body Content */}
-        <Container>
+        <Box sx={{ width: '95%', height: '95%', paddingLeft: '20px' }}>
           <Outlet />
-        </Container>
-        <Box sx={{position: "absolute", bottom: 50, right: 50}}>
+        </Box>
+
+        {/* Play Button and Mod Switcher */}
+        <Box sx={{position: "fixed", bottom: 50, right: 50}}>
           <PlayButton />
         </Box>
 
