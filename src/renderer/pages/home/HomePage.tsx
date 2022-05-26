@@ -2,6 +2,7 @@ import { colors } from "@common/colors";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
+import Box from "@mui/material/Box";
 
 import { DualPane } from "@/components/DualPane";
 import { Footer } from "@/components/Footer";
@@ -32,16 +33,16 @@ export const HomePage = React.memo(function HomePage() {
   usePageScrollingShortcuts(mainRef);
 
   return (
-    <Outer>
-      <div
-        css={css`
-          display: flex;
-          flex: 1;
-          position: relative;
-          overflow: hidden;
-        `}
+      <Box
+        sx={{
+          display: "flex",
+          flex: 1,
+          position: "relative",
+          height: "90%",
+        }}
       >
-        <DualPane
+        <NewsFeed />
+        {/* <DualPane
           id="home-page"
           leftSide={
             <Main ref={mainRef}>
@@ -52,9 +53,7 @@ export const HomePage = React.memo(function HomePage() {
           rightSide={<TwitterFeed />}
           rightStyle={{ backgroundColor: colors.purpleDark }}
           style={{ gridTemplateColumns: "auto 300px" }}
-        />
-      </div>
-      <Footer />
-    </Outer>
+        /> */}
+      </Box>
   );
 });

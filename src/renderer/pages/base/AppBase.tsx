@@ -8,7 +8,7 @@ import PlayButton from './PlayButton';
 
 const AppBase = () => {
   return (
-    <Box sx={{display: 'flex'}}>
+    <Box sx={{display: 'flex', height: "100%", overflowY: "hidden"}}>
       {/* Sidebar */}
       <Menu />
       <Box component='main' sx={{ display: 'block', width: '100%' }}>
@@ -16,7 +16,7 @@ const AppBase = () => {
         <UserHeader />
 
         {/* Body Content */}
-        <Box sx={{ width: '95%', height: '95%', paddingLeft: '20px' }}>
+        <Box sx={{ width: '95%', height: '95%', margin: '20px' }}>
           <Outlet />
         </Box>
 

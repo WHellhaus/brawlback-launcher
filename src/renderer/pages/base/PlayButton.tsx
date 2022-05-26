@@ -1,5 +1,5 @@
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -10,7 +10,6 @@ import { useMods } from "@/lib/hooks/useMods";
 const PlayButton = () => {
   const [menuAnchor, setAnchor] = useState<null | HTMLElement>(null);
   const modList = useMods((store) => store.mods);
-  console.log(modList);
 
   const onChangeMod = (_: React.MouseEvent<HTMLLIElement, MouseEvent>, index: number) => {
     //dispatch({type: 'SELECT_LAUNCHER', index: index})
@@ -28,29 +27,33 @@ const PlayButton = () => {
   return (
     <Box sx={{ position: "relative", width: "fit-content" }}>
       <IconButton
-        sx={{ width: 150, height: 150, bgcolor: "primary.main", filter: "drop-shadow(0px 7px 5px #000000)" }}
+        sx={{ width: 100, height: 100, bgcolor: "primary.main", filter: "drop-shadow(0px 7px 5px #000000)" }}
         onClick={onHitPlay}
       >
-        <PlayArrowIcon sx={{ fontSize: 150 }}></PlayArrowIcon>
+        <PlayArrowIcon sx={{ fontSize: 100 }}></PlayArrowIcon>
       </IconButton>
-      <Box
-        sx={{
-          borderRadius: "50%",
-          width: 45,
-          height: 45,
-          bgcolor: "primary.main",
-          display: "flex",
-          position: "absolute",
-          bottom: 0,
-          right: 0,
-          filter: "drop-shadow(0px 4px 5px #000000)",
-        }}
-        onClick={(event) => {
-          setAnchor(event.currentTarget);
-        }}
-      >
-        {modList.length > 0 && <p>{modList[0].name.substring(0, 2)}</p>}
-      </Box>
+      {modList.length > 0 && 
+        <Box
+          sx={{
+            borderRadius: "50%",
+            width: 45,
+            height: 45,
+            bgcolor: "primary.main",
+            display: "flex",
+            position: "absolute",
+            top: 65,
+            left: 70,
+            filter: "drop-shadow(0px 4px 5px #000000)",
+            fontWeight: "bold",
+            textAlign: "center"
+          }}
+          onClick={(event) => {
+            setAnchor(event.currentTarget);
+          }}
+        >
+          <Box component="p" sx={{width: "100%", lineHeight: 1}}>{modList[0].name.substring(0, 2)}</Box>
+        </Box>
+      }
       <Menu
         anchorEl={menuAnchor}
         open={menuAnchor != null}

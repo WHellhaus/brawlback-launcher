@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { LoadingScreen } from "@/components/LoadingScreen";
 
 import { NewsArticle } from "./news_article/NewsArticle";
+import Box from "@mui/material/Box";
 
 const ITEMS_TO_SHOW = 7;
 const BATCH_SIZE = 5;
@@ -50,7 +51,7 @@ export const NewsFeed = React.memo(function NewsFeedContainer() {
   }
 
   return (
-    <div>
+    <Box sx={{overflowY: "scroll"}}>
       {posts.map((post) => (
         <NewsArticle key={post.id} item={post} />
       ))}
@@ -65,6 +66,6 @@ export const NewsFeed = React.memo(function NewsFeedContainer() {
           </Button>
         </div>
       )}
-    </div>
+    </Box>
   );
 });
