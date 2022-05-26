@@ -1,19 +1,30 @@
-import { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import AppBar from "@mui/material/AppBar";
 //import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import { useState } from "react";
 
+import { MeleeOptions } from "@/containers/Settings/MeleeOptions";
+import { ModsOptions } from "@/containers/Settings/ModsOptions";
 
-import { MeleeOptions } from '@/containers/Settings/MeleeOptions';
+const tabSwitch = (index: number) => {
+  switch (index) {
+    case 0:
+      return <MeleeOptions />;
+    case 1:
+      return <ModsOptions />;
+    default:
+      return <Box></Box>;
+  }
+};
 
 const SettingsPage = () => {
   const [tabVal, setTabVal] = useState(0);
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: "100%" }}>
       <AppBar position="static" sx={{ borderRadius: "20px", backgroundColor: "background.paper" }}>
         <Tabs
           value={tabVal}
@@ -24,23 +35,26 @@ const SettingsPage = () => {
           aria-label="settings tabs"
           sx={{ width: "95%", margin: "0 auto" }}
         >
-          <Tab label="General"  icon={<SportsEsportsIcon />} /> 
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
+          <Tab label="General" />
+          <Tab label="Mods" icon={<SportsEsportsIcon />} />
+          <Tab label="Netplay" />
+          <Tab label="Replays" />
         </Tabs>
       </AppBar>
 
-      <Box sx={{ 
-        width: {
-          xs: "95%", 
-          sm: "90%"
-        },
-        margin: "0 auto"
-      }}>
-        {tabVal === 0 && <MeleeOptions />}
+      <Box
+        sx={{
+          width: {
+            xs: "95%",
+            sm: "90%",
+          },
+          margin: "0 auto",
+        }}
+      >
+        {tabSwitch(tabVal)}
       </Box>
     </Box>
-  )
-}
+  );
+};
 
 export default SettingsPage;
