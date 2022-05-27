@@ -20,7 +20,6 @@ export class ModsManager {
     if (!electronSettings.hasSync("mods")) {
       electronSettings.setSync("mods", defaultModConfig);
     }
-    console.log(electronSettings.file());
     const restoredSettings = electronSettings.getSync("mods") as Partial<ModConfig>;
 
     // check to make launcher .elf path and sd card path exist

@@ -1,4 +1,4 @@
-import type { ModConfig } from "@mods/types";
+import type { Mod, ModConfig } from "@mods/types";
 import create from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -16,3 +16,18 @@ export const useMods = create(
     }),
   ),
 );
+
+export const useModsList = () => {
+  const modsList = useMods((store) => store.mods);
+  const addMod = async (modVals: Mod) => {
+    await window.electron.mods.addNewMod(modVals);
+  };
+  const deleteMod = async (index: number) => {
+    console.log("deleting", index);
+    if (index < modsList.length) {
+      console.log("inside delete");
+      await window.electron.mods.deleteMod(index);
+    }
+  };
+  return [modsList, addMod, deleteMod] as const;
+};
