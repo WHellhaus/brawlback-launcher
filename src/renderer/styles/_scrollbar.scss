@@ -16,6 +16,7 @@ $scrollbar-min-height: 50px;
   width: $scrolltrack-width;
   height: $scrolltrack-width;
   border-radius: $scrolltrack-width;
+  background-clip: padding-box;
 }
 
 /* background of the scrollbar except button or resizer */

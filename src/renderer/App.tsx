@@ -1,23 +1,20 @@
 import "./styles/styles.scss";
-import { createTheme, StyledEngineProvider, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 
-import CssBaseline from '@mui/material/CssBaseline';
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme, StyledEngineProvider, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import React, { useMemo } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { HashRouter as Router, Navigate, useRoutes } from "react-router-dom";
 
 import { useAppStore } from "@/lib/hooks/useApp";
-import { useThemeMode } from "./lib/hooks/useSettings";
 
 import { ToastProvider } from "./components/ToastProvider";
 import { useAppListeners } from "./lib/hooks/useAppListeners";
+import { useThemeMode } from "./lib/hooks/useSettings";
+import { AppBase, HomePage, SettingsPage } from "./pages";
 import { ServiceProvider } from "./services";
 import getThemeOptions from "./styles/theme";
-
 import { LoadingView } from "./views/LoadingView";
-import { SettingsView } from "./views/SettingsView";
-
-import { AppBase, HomePage, SettingsPage } from "./pages";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,45 +29,37 @@ const queryClient = new QueryClient({
   },
 });
 
-function Home() {
-  return (
-    <h3>Home</h3>
-  )
-}
-
 function Replay() {
-  return (
-    <h3>Replay</h3>
-  )
+  return <h3>Replay</h3>;
 }
 
 const routesObj = [
   {
-    path: '/',
+    path: "/",
     element: <AppBase />,
-    name: 'base',
+    name: "base",
     children: [
       {
         index: true,
         element: <HomePage />,
-        name: 'home'
+        name: "home",
       },
       {
-        path: 'replays/*',
-        element: <SettingsView />,
-        name: 'replays'
+        path: "replays/*",
+        element: <Replay />,
+        name: "replays",
       },
       {
-        path: 'settings/*',
+        path: "settings/*",
         element: <SettingsPage />,
-        name: 'settings'
-      }
-    ]
+        name: "settings",
+      },
+    ],
   },
   {
-    path: '/main/*',
-    element: <Navigate replace to="/" />
-  }
+    path: "/main/*",
+    element: <Navigate replace to="/" />,
+  },
 ];
 
 const App = () => {
@@ -90,8 +79,8 @@ const App = () => {
 
   return (
     <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        { routes }
+      <CssBaseline />
+      {routes}
     </MuiThemeProvider>
   );
 };
